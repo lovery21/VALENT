@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín</title>
+    <style>
+        html {
+            display: flex;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #7dbdc9, #6ca571);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+        }
+
+        .card {
+            background: rgb(169, 207, 164);
+            padding: 20px;
+            border-radius: 80px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 350px;
+            height: auto;
+            position: relative;
+        }
+
+        .heart {
+            color: red;
+            font-size: 50px;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            background-color: rgb(219, 163, 191);
+            color: white;
+            border: none;
+            padding: 30px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.6s;
+        }
+
+        button:hover {
+            background-color: rgb(139, 4, 4);
+        }
+
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart-icon {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: float 3s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .image-cars {
+            display: flex;
+            max-width: 311px;
+        }
+
+        .image-cars>img {
+            max-width: 311px;
+            width: 100%;
+        }
+
+        @media(max-width: 768px) {
+            .heart {
+                font-size: 30px;
+            }
+
+            button {
+                padding: 20px 10px;
+            }
+
+            .heart-icon {
+                font-size: 15px;
+            }
+
+            body {
+                flex-direction: column;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Cars" style="opacity: 0;transition: all 300ms;" class="image-cars">
+        <img src="IMG\Cars.png" alt="Cars">
+    </div>
+    <div class="card">
+        <div class="heart">🌻🌻🌻🌻</div>
+        <h1>Feliz San Valentín Osita🤍🐻</h1>
+        <h2>Para una personita especial 💕</h2>
+        <button onclick="mostrarMensaje()">¿Que habrá aqui?</button>
+        <button onclick="mostrarOtroMensaje()">¿Y aqui?</button>
+        <button onclick="cambiarFondo()">Sorpréndeme</button>
+        <p id="mensaje" class="hidden">Eres una de las personas mas increibles que he conocido , te admiro demasiado por
+            la persona que eres y la que quieres ser , espero poder
+            acompañarte en este proceso y sepas que no estas solita 💞</p>
+        <p id="otroMensaje" class="hidden">Tienes una forma de ser unica que está llena de sorpresas y cada dia me
+            sorprendes mas FELIZ DIA ESPERO TE LA HAYAS PASADO MUY BONITO HOY🦦🤍🦦 </p>
+        <div class="floating-hearts" id="hearts-container"></div>
+    </div>
+    <div id="CARS2" style="opacity: 0;transition: all 300ms;" class="image-cars">
+        <img src="IMG\cars2.png" alt="cars2">
+    </div>
+    <script>
+        function mostrarMensaje() {
+            document.getElementById("mensaje").classList.remove("hidden");
+            lanzarCorazones();
+            document.getElementById("Cars").style.opacity = 0
+            document.getElementById("CARS2").style.opacity = 0
+        }
+        function mostrarOtroMensaje() {
+            document.getElementById("otroMensaje").classList.remove("hidden");
+            lanzarCorazones();
+            document.getElementById("Cars").style.opacity = 0
+            document.getElementById("CARS2").style.opacity = 0
+        }
+        function cambiarFondo() {
+            document.body.style.background = "linear-gradient(to right, #6ca571, #7dbdc9)";
+            document.getElementById("Cars").style.opacity = 1
+            document.getElementById("CARS2").style.opacity = 1
+            document.getElementById("mensaje").classList.add("hidden");
+            document.getElementById("otroMensaje").classList.add("hidden");
+        }
+        function lanzarCorazones() {
+            const container = document.getElementById("hearts-container");
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart-icon");
+                heart.innerHTML = "💟";
+                heart.style.left = Math.random() * 100 + "%";
+                heart.style.top = "100%";
+                heart.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+                document.getElementById("Cars").style.opacity = 0
+                document.getElementById("CARS2").style.opacity = 0
+            }
+        }
+    </script>
+</body>
+
+</html>
